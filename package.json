@@ -1,0 +1,31 @@
+{
+  "name": "javan-contact-backend",
+  "version": "1.0.0",
+  "description": "Backend MERN - Form Kontak",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "NODE_ENV=test npx jest --config jest.config.js",
+    "test:watch": "NODE_ENV=test npx jest --config jest.config.js --watch"
+  },
+  "keywords": [
+    "mern",
+    "express",
+    "mongodb",
+    "contact"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
