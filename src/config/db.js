@@ -28,7 +28,7 @@ const createTable = async () => {
       id INT AUTO_INCREMENT PRIMARY KEY,
       nama VARCHAR(255) NOT NULL,
       telepon VARCHAR(50) NOT NULL,
-      email VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL UNIQUE,
       alamat TEXT NOT NULL,
       foto VARCHAR(255) DEFAULT '',
       createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,

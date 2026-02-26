@@ -22,6 +22,20 @@ exports.findById = async (id) => {
   return rows[0] || null;
 };
 
+exports.findByEmail = async (email, excludeId = null) => {
+  if (excludeId != null) {
+    const [rows] = await pool.execute(
+      'SELECT * FROM contacts WHERE email = ? AND id != ?',
+      [email, excludeId]
+    );
+    return rows[0] || null;
+  }
+  const [rows] = await pool.execute('SELECT * FROM contacts WHERE email = ?', [
+    email,
+  ]);
+  return rows[0] || null;
+};
+
 exports.update = async (id, data) => {
   const updates = [];
   const values = [];

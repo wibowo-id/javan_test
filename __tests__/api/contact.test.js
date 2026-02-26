@@ -50,6 +50,31 @@ describe('Contact API', () => {
 
       expect(res.body.error).toMatch(/wajib diisi/i);
     });
+
+    it('harus return 400 jika format email tidak valid', async () => {
+      const res = await request(app)
+        .post('/api/contact')
+        .send({ ...validContact, email: 'bukan-email' })
+        .expect(400);
+      expect(res.body.error).toMatch(/format email/i);
+    });
+
+    it('harus return 400 jika telepon bukan nomor', async () => {
+      const res = await request(app)
+        .post('/api/contact')
+        .send({ ...validContact, telepon: '08xx-123' })
+        .expect(400);
+      expect(res.body.error).toMatch(/nomor/i);
+    });
+
+    it('harus return 400 jika email sudah terdaftar', async () => {
+      await request(app).post('/api/contact').send(validContact);
+      const res = await request(app)
+        .post('/api/contact')
+        .send({ ...validContact, nama: 'Lain' })
+        .expect(400);
+      expect(res.body.error).toMatch(/sudah terdaftar/i);
+    });
   });
 
   describe('GET /api/contact', () => {
